@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Histoire Première – Le cours complet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Familjen+Grotesk:wght@500;700&display=swap">
+<style>
+:root{--bg:#f2f4f6;--card:#fff;--ink:#1b2a41;--mute:#5b6b7f;--line:#d5dbe2;--gold:#9a6b00;
+--c1:#b3412f;--c2:#2f6fa3;--c3:#2e7d5b;--c4:#6b4a8f;--c5:#a8791a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10161f;--card:#18212d;--ink:#e6ebf1;--mute:#9aa9bb;--line:#2b3746;--gold:#e0b04a;--c1:#e7765f;--c2:#6fb0e3;--c3:#5fc093;--c4:#b394dc;--c5:#e0b04a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10161f;--card:#18212d;--ink:#e6ebf1;--mute:#9aa9bb;--line:#2b3746;--gold:#e0b04a;--c1:#e7765f;--c2:#6fb0e3;--c3:#5fc093;--c4:#b394dc;--c5:#e0b04a;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Literata,Georgia,serif}
+h1,h2,h3,.ui{font-family:"Familjen Grotesk",system-ui,sans-serif}
+a{color:inherit}
+.wrap{display:grid;grid-template-columns:270px minmax(0,1fr);max-width:1180px;margin:0 auto}
+nav{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;height:100vh;overflow:auto;padding:28px 20px;border-right:1px solid var(--line)}
+nav h1{font-size:1.5rem;line-height:1.15;margin:0 0 4px}
+nav p{margin:0 0 18px;color:var(--mute);font-size:.85rem}
+nav a{display:block;text-decoration:none;padding:7px 0 7px 12px;border-left:4px solid var(--h);font-size:.92rem;margin:3px 0;font-family:"Familjen Grotesk",system-ui,sans-serif}
+nav a:hover,nav a:focus-visible{background:var(--card);outline:none}
+nav a small{display:block;color:var(--mute)}
+.tools{display:grid;gap:8px;margin-bottom:18px}
+input,button{font:inherit;font-size:.9rem;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+button{cursor:pointer;font-family:"Familjen Grotesk",system-ui,sans-serif;font-weight:500}
+button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+main{padding:32px clamp(16px,4vw,48px) 80px}
+.theme{margin-bottom:64px;border-top:6px solid var(--h);padding-top:18px}
+.theme>h2{font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.1;margin:0}
+.theme>.per{color:var(--h);font-family:"Familjen Grotesk",sans-serif;font-weight:700;margin:4px 0 22px}
+.chap{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px clamp(16px,3vw,30px);margin-bottom:22px}
+.chap h3{font-size:1.3rem;margin:0 0 8px}
+.chap h4{font:700 .95rem "Familjen Grotesk",sans-serif;margin:22px 0 8px;color:var(--mute)}
+.chap p{margin:0;max-width:68ch}
+ol.tl{list-style:none;margin:0;padding:0 0 0 18px;border-left:3px solid var(--h)}
+ol.tl li{position:relative;padding:4px 0 10px 14px;max-width:70ch}
+ol.tl li::before{content:"";position:absolute;left:-26px;top:13px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:3px solid var(--h)}
+.d{font:700 .95rem "Familjen Grotesk",sans-serif;color:var(--h);display:block}
+.rev .t{filter:blur(6px);cursor:pointer;user-select:none}
+.rev .t.on{filter:none}
+dl{margin:0;display:grid;gap:8px}
+dt{font:700 1rem "Familjen Grotesk",sans-serif}
+dd{margin:0 0 4px;max-width:68ch}
+.hide{display:none}
+.none{color:var(--mute);display:none}
+footer{color:var(--mute);font-size:.85rem;max-width:68ch}
+@media (max-width:820px){.wrap{display:block}nav{position:static;height:auto;border:0;border-bottom:1px solid var(--line)}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav aria-label="Sommaire">
+<h1>Histoire<br>Première</h1>
+<p>Le cours complet, du Siècle des révolutions à 1945.</p>
+<div class="tools">
+<input id="q" type="search" placeholder="Chercher un mot, une date…" aria-label="Rechercher">
+<button id="rv" aria-pressed="false">Mode révision</button>
+<button id="th" aria-pressed="false">Mode sombre</button>
+</div>
+<div id="toc"></div>
+</nav>
+<main>
+<div id="out"></div>
+<p class="none" id="none">Aucun résultat. Essaie un autre mot-clé.</p>
+<footer>Résumé de cours fait pour réviser : vérifie toujours les points précis avec ton manuel et les consignes de ton professeur.</footer>
+</main>
+</div>
+<script>
+var D=[
+{t:"L’Europe face aux révolutions",p:"1789 – 1848",h:"var(--c1)",c:[
+{n:"La Révolution française et l’Empire : une nouvelle conception de la nation",
+r:"En 1789, la France met fin à l’Ancien Régime : la souveraineté passe du roi à la nation. Les privilèges sont abolis, tous les citoyens deviennent égaux en droits. Mais la Révolution se radicalise (République, Terreur) avant que Napoléon Bonaparte ne rétablisse l’ordre en conservant une partie de l’héritage révolutionnaire (Code civil, administration centralisée).",
+e:[["5 mai 1789","Ouverture des États généraux à Versailles."],["17 juin 1789","Les députés du tiers état se proclament Assemblée nationale."],["14 juillet 1789","Prise de la Bastille."],["4 août 1789","Abolition des privilèges."],["26 août 1789","Déclaration des droits de l’homme et du citoyen."],["1791","Constitution : monarchie constitutionnelle."],["21 septembre 1792","Proclamation de la République, après la victoire de Valmy."],["21 janvier 1793","Exécution de Louis XVI."],["1793 – 1794","Terreur : Comité de salut public, Robespierre."],["9 thermidor an II (27 juillet 1794)","Chute de Robespierre."],["9 novembre 1799","Coup d’État du 18 Brumaire : Bonaparte prend le pouvoir."],["1804","Code civil ; Napoléon est sacré empereur."],["18 juin 1815","Défaite de Waterloo."]],
+w:[["Souveraineté nationale","Idée selon laquelle le pouvoir appartient à la nation et non plus au roi."],["Ancien Régime","Société d’ordres (clergé, noblesse, tiers état) et monarchie absolue avant 1789."],["Terreur","Période (1793-1794) où la répression des opposants est érigée en politique d’État."],["Code civil","Ensemble de lois de 1804 garantissant l’égalité devant la loi, la propriété et la liberté individuelle."]]},
+{n:"L’Europe entre Restauration et révolutions (1815-1848)",
+r:"Après Waterloo, le congrès de Vienne veut rétablir l’ordre ancien en Europe. Mais les idées de liberté et de nation, diffusées par la Révolution et l’Empire, nourrissent de nouveaux soulèvements : 1830 en France et en Belgique, puis le « Printemps des peuples » de 1848.",
+e:[["1814 – 1815","Congrès de Vienne : réorganisation de l’Europe, équilibre entre les grandes puissances."],["27 – 29 juillet 1830","Trois Glorieuses : Charles X est renversé, Louis-Philippe devient roi."],["1830 – 1831","La Belgique obtient son indépendance."],["Février 1848","Chute de la monarchie de Juillet ; IIe République."],["Mars 1848","Suffrage universel masculin."],["27 avril 1848","Décret Schoelcher : abolition définitive de l’esclavage dans les colonies françaises."],["1848","« Printemps des peuples » : révoltes libérales et nationales en Europe, souvent réprimées."]],
+w:[["Libéralisme","Doctrine qui défend les libertés individuelles et politiques, et un pouvoir limité par une constitution."],["Nationalisme","Volonté pour un peuple de former une nation indépendante dotée de son propre État."],["Suffrage universel masculin","Droit de vote accordé à tous les hommes adultes, sans condition de richesse."]]}]},
+{t:"La France et l’Europe des nationalités",p:"1848 – 1871",h:"var(--c2)",c:[
+{n:"Du Second Empire à la guerre de 1870",
+r:"Élu président en décembre 1848, Louis-Napoléon Bonaparte prend le pouvoir par un coup d’État en 1851 et devient Napoléon III. Son régime, d’abord autoritaire puis plus libéral, modernise le pays. Mais sa politique extérieure échoue face à la Prusse : la défaite de Sedan en 1870 met fin à l’Empire.",
+e:[["10 décembre 1848","Louis-Napoléon Bonaparte élu président de la République."],["2 décembre 1851","Coup d’État."],["1852","Proclamation du Second Empire."],["1860","Régime plus libéral (droit de grève en 1864)."],["2 septembre 1870","Défaite de Sedan : Napoléon III est capturé."],["4 septembre 1870","Proclamation de la République."]],
+w:[["Bonapartisme","Régime fondé sur un pouvoir fort et personnel, légitimé par le plébiscite."],["Plébiscite","Vote par lequel le peuple approuve la politique d’un chef."]]},
+{n:"L’Europe des nationalités : unités italienne et allemande",
+r:"Au XIXe siècle, des peuples veulent former des États-nations. L’Italie se rassemble autour du royaume de Piémont-Sardaigne (Cavour, Garibaldi), l’Allemagne autour de la Prusse de Bismarck, qui l’emporte contre l’Autriche puis la France.",
+e:[["1859 – 1860","Guerre en Italie du Nord ; expédition des Mille de Garibaldi."],["17 mars 1861","Proclamation du royaume d’Italie (Victor-Emmanuel II)."],["1866","Victoire prussienne de Sadowa contre l’Autriche."],["1870","Rome devient la capitale de l’Italie."],["18 janvier 1871","Empire allemand proclamé dans la galerie des Glaces à Versailles."],["Mai 1871","Traité de Francfort : la France perd l’Alsace et une partie de la Lorraine."]],
+w:[["État-nation","État dont les habitants forment une même communauté nationale."],["Unité nationale","Regroupement de territoires divisés en un seul État."]]},
+{n:"La Commune de Paris (1871)",
+r:"Pendant le siège de Paris, puis après l’armistice, les Parisiens refusent la politique du gouvernement d’Adolphe Thiers. Ils créent la Commune, qui prend des mesures sociales et démocratiques. Elle est écrasée pendant la « Semaine sanglante ».",
+e:[["18 mars 1871","Insurrection parisienne ; début de la Commune."],["21 – 28 mai 1871","Semaine sanglante : l’armée de Versailles reprend Paris, milliers de morts."]],
+w:[["Commune","Pouvoir municipal insurrectionnel, qui veut une république démocratique et sociale."]]}]},
+{t:"La Troisième République avant 1914",p:"1870 – 1914",h:"var(--c3)",c:[
+{n:"L’enracinement de la République",
+r:"La IIIe République s’installe difficilement, puis s’enracine grâce à des lois fondamentales : libertés publiques, école gratuite, obligatoire et laïque, séparation des Églises et de l’État. Elle crée aussi des symboles communs (drapeau, Marseillaise, 14 juillet).",
+e:[["1875","Lois constitutionnelles : régime parlementaire avec un président, une Chambre des députés et un Sénat."],["1879 – 1880","Démission de Mac-Mahon ; Marseillaise hymne national, 14 juillet fête nationale."],["1881 – 1882","Lois Jules Ferry : école gratuite, obligatoire (6-13 ans), laïque."],["1881","Loi sur la liberté de la presse."],["1884","Loi Waldeck-Rousseau : légalisation des syndicats."],["1901","Loi sur la liberté d’association."],["9 décembre 1905","Loi de séparation des Églises et de l’État."]],
+w:[["Laïcité","Principe de neutralité de l’État et liberté de conscience : l’État ne reconnaît aucun culte."],["Régime parlementaire","Régime où le gouvernement est responsable devant le Parlement."]]},
+{n:"L’affaire Dreyfus",
+r:"Le capitaine Alfred Dreyfus, juif, est condamné à tort pour espionnage. L’affaire divise la France entre dreyfusards et antidreyfusards et révèle l’antisémitisme, mais elle renforce aussi les valeurs républicaines.",
+e:[["1894","Condamnation de Dreyfus."],["13 janvier 1898","« J’accuse… ! » : lettre ouverte d’Émile Zola dans L’Aurore."],["1899","Dreyfus gracié."],["1906","Dreyfus réhabilité par la Cour de cassation."]],
+w:[["Dreyfusards","Partisans de l’innocence de Dreyfus et de la révision du procès."],["Antisémitisme","Hostilité envers les Juifs."]]},
+{n:"L’empire colonial français",
+r:"Pour des raisons économiques, stratégiques et idéologiques (« mission civilisatrice »), la France conquiert un vaste empire. La domination coloniale repose sur l’inégalité entre colons et colonisés, et suscite dès cette époque des résistances.",
+e:[["1881","Protectorat sur la Tunisie ; Code de l’indigénat en Algérie."],["1884 – 1885","Conférence de Berlin : partage de l’Afrique."],["1895","Création de l’Afrique-Occidentale française (AOF)."],["1896","Madagascar devient colonie."],["1912","Protectorat sur le Maroc."]],
+w:[["Colonisation","Domination politique, économique et culturelle d’un territoire par un État étranger."],["Protectorat","Territoire conservant ses autorités locales, mais sous contrôle d’une puissance étrangère."]]}]},
+{t:"La Première Guerre mondiale",p:"1914 – 1919",h:"var(--c4)",c:[
+{n:"Une guerre totale",
+r:"Déclenchée par un attentat à Sarajevo et le jeu des alliances, la guerre devient mondiale. Après la guerre de mouvement, elle s’enlise dans les tranchées. Elle mobilise toutes les ressources (économie, propagande, femmes à l’usine) et cause environ 10 millions de morts militaires.",
+e:[["28 juin 1914","Assassinat de l’archiduc François-Ferdinand à Sarajevo."],["28 juillet 1914","L’Autriche-Hongrie déclare la guerre à la Serbie."],["3 août 1914","L’Allemagne déclare la guerre à la France."],["4 août 1914","Union sacrée en France."],["Septembre 1914","Bataille de la Marne ; début de la guerre de position."],["1915","Génocide des Arméniens dans l’Empire ottoman."],["Février – décembre 1916","Bataille de Verdun ; bataille de la Somme."],["1917","Entrée en guerre des États-Unis ; révolution russe ; mutineries françaises."],["Mars 1918","Traité de Brest-Litovsk : la Russie sort de la guerre."],["11 novembre 1918","Armistice."],["28 juin 1919","Traité de Versailles avec l’Allemagne."]],
+w:[["Guerre totale","Guerre qui mobilise toute la société et les ressources d’un pays."],["Union sacrée","Union politique de tous les Français face à l’ennemi."],["Génocide","Extermination volontaire et organisée d’un groupe humain."]]},
+{n:"La fin des empires européens",
+r:"La guerre met fin à quatre empires : allemand, austro-hongrois, russe et ottoman. De nouveaux États apparaissent en Europe centrale selon le principe des nationalités, mais le règlement de la paix laisse de fortes frustrations.",
+e:[["1917","Révolution bolchevique en Russie."],["1918 – 1919","Chute des empires allemand et austro-hongrois."],["1919 – 1920","Traités de paix : Versailles, Saint-Germain, Trianon, Sèvres."],["1920","Création de la Société des Nations."]],
+w:[["Droit des peuples à disposer d’eux-mêmes","Principe défendu par le président américain Wilson : chaque peuple choisit son destin."]]}]},
+{t:"La Seconde Guerre mondiale",p:"1939 – 1945",h:"var(--c5)",c:[
+{n:"Un conflit mondial et une guerre d’anéantissement",
+r:"Dans les années 1930, les régimes totalitaires (nazisme, fascisme, stalinisme) menacent les démocraties. La guerre éclate avec l’invasion de la Pologne, devient mondiale, puis se termine par la victoire des Alliés. Le nazisme mène un génocide des Juifs et des Tsiganes.",
+e:[["1933","Hitler devient chancelier."],["23 août 1939","Pacte germano-soviétique."],["1er septembre 1939","Invasion de la Pologne ; la France et le Royaume-Uni déclarent la guerre le 3."],["22 juin 1941","L’Allemagne attaque l’URSS."],["7 décembre 1941","Attaque japonaise sur Pearl Harbor ; les États-Unis entrent en guerre."],["20 janvier 1942","Conférence de Wannsee : organisation de la « solution finale »."],["Février 1943","Victoire soviétique à Stalingrad."],["6 juin 1944","Débarquement allié en Normandie."],["8 mai 1945","Capitulation de l’Allemagne."],["6 et 9 août 1945","Bombes atomiques sur Hiroshima et Nagasaki."],["2 septembre 1945","Capitulation du Japon."]],
+w:[["Totalitarisme","Régime qui contrôle toute la société par la terreur, la propagande et le parti unique."],["Shoah","Génocide des Juifs d’Europe : environ 6 millions de victimes."],["Génocide des Tsiganes","Extermination des Roms et Sinti par les nazis."]]},
+{n:"La France défaite et occupée",
+r:"Vaincue en quelques semaines en 1940, la France est coupée en deux. Pétain instaure à Vichy un régime autoritaire qui collabore avec l’Allemagne. En parallèle, De Gaulle et la Résistance poursuivent le combat jusqu’à la Libération.",
+e:[["Mai – juin 1940","Défaite de la France."],["18 juin 1940","Appel du général de Gaulle depuis Londres."],["10 juillet 1940","Pleins pouvoirs à Pétain : fin de la IIIe République, régime de Vichy."],["Octobre 1940","Poignée de main de Montoire : début de la collaboration d’État."],["16 – 17 juillet 1942","Rafle du Vél’ d’Hiv à Paris."],["27 mai 1943","Premier Conseil national de la Résistance, sous la direction de Jean Moulin."],["Août 1944","Libération de Paris."]],
+w:[["Collaboration","Coopération du régime de Vichy avec l’Allemagne nazie."],["Résistance","Ensemble des mouvements qui luttent contre l’occupant et Vichy."],["France libre","Mouvement dirigé par de Gaulle depuis Londres."]]}]}
+];
+var out=document.getElementById("out"),toc=document.getElementById("toc");
+D.forEach(function(T,i){
+var s=document.createElement("section");s.className="theme";s.id="t"+(i+1);s.style.setProperty("--h",T.h);
+var h="<h2>"+T.t+"</h2><p class=\"per\">Thème "+(i+1)+" · "+T.p+"</p>";
+T.c.forEach(function(C){
+h+="<article class=\"chap\"><h3>"+C.n+"</h3><p>"+C.r+"</p><h4>Chronologie</h4><ol class=\"tl\">";
+C.e.forEach(function(e){h+="<li><span class=\"d\">"+e[0]+"</span><span class=\"t\">"+e[1]+"</span></li>"});
+h+="</ol><h4>Notions à connaître</h4><dl>";
+C.w.forEach(function(w){h+="<dt>"+w[0]+"</dt><dd>"+w[1]+"</dd>"});
+h+="</dl></article>"});
+s.innerHTML=h;out.appendChild(s);
+var a=document.createElement("a");a.href="#t"+(i+1);a.style.setProperty("--h",T.h);
+a.innerHTML=T.t+"<small>"+T.p+"</small>";toc.appendChild(a)});
+var q=document.getElementById("q");
+q.addEventListener("input",function(){
+var v=q.value.trim().toLowerCase(),n=0;
+document.querySelectorAll(".chap").forEach(function(c){
+var ok=!v||c.textContent.toLowerCase().indexOf(v)>-1;c.classList.toggle("hide",!ok);if(ok)n++});
+document.querySelectorAll(".theme").forEach(function(t){t.classList.toggle("hide",!t.querySelector(".chap:not(.hide)"))});
+document.getElementById("none").style.display=n?"none":"block"});
+var rv=document.getElementById("rv");
+rv.addEventListener("click",function(){
+var on=rv.getAttribute("aria-pressed")!=="true";rv.setAttribute("aria-pressed",on);
+out.classList.toggle("rev",on);
+rv.textContent=on?"Quitter la révision":"Mode révision";
+document.querySelectorAll(".t.on").forEach(function(x){x.classList.remove("on")})});
+out.addEventListener("click",function(e){if(e.target.classList.contains("t"))e.target.classList.toggle("on")});
+var th=document.getElementById("th"),R=document.documentElement;
+th.addEventListener("click",function(){
+var dark=th.getAttribute("aria-pressed")!=="true";th.setAttribute("aria-pressed",dark);
+R.setAttribute("data-theme",dark?"dark":"light");
+th.textContent=dark?"Mode clair":"Mode sombre"});
+</script>
+</body>
+</html>
